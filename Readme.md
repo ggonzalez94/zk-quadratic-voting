@@ -1,4 +1,4 @@
-# Quadratic Voting using zk proofs [WIP]
+# Quadratic Voting using zk proofs
 
 This repo shows a [quadratic voting](https://www.economist.com/interactive/2021/12/18/quadratic-voting) application that leverages zk proofs to keep users votes secret, while making sure each one is counted in the final result.
 The votes of each user are kept secret to everyone, except a trusted ballot manager that is in charge of counting the votes, but cannot censor or modify user's choices.  
