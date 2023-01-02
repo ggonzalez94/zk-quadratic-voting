@@ -1,0 +1,4 @@
+all_votes = [1,1,1,2,2,2]
+secrets = [123,456]
+commitments = ["0x01cbeb38c3187313b569049cb70230393466931835f41bf8ba33d973df16da9e", "0x1b1ae9bd36506b469e88707bc7ed2d3ba59eaeff5dc8cf566b34ab3734f2467e"]
+return = [3,3,3]
