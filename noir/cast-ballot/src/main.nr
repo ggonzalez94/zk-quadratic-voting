@@ -1,7 +1,11 @@
 use dep::std;
-global CANDIDATE_COUNT = 3;
+global CANDIDATE_COUNT = 10;
 
-fn main(token_budget: pub u32, votes: [u32;CANDIDATE_COUNT], secret: Field) -> pub Field{
+fn main(
+    token_budget: pub u32, // budget of max votes to enforce
+    votes: [u32;CANDIDATE_COUNT], // ballot of user representing it's votes for each candidate
+    secret: Field // for shielding the commitment from brute-force attacks
+) -> pub Field{
     check_within_budget(token_budget, votes); 
     calculate_ballot_commitment(votes, secret)
 }
@@ -16,7 +20,7 @@ fn check_within_budget(token_budget: u32, votes: [u32;CANDIDATE_COUNT]) {
     constrain sum <= token_budget;
 }
 
-// Hashes the content of a ballot using pedersen
+// Hashes the content of a ballot using pedersen and returns that value
 fn calculate_ballot_commitment(votes: [u32; CANDIDATE_COUNT], secret: Field) -> Field{
     let mut input = [0; CANDIDATE_COUNT + 1];
     input[0] = secret;

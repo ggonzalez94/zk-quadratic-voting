@@ -1,4 +1,11 @@
-token_budget = "20"
-votes = [2,2,2]
-secret = 456
-return=""
+# Alice Prover.toml
+# token_budget = 100
+# secret = "0x05dbb4533ff6a367c2442e4aec0133b8cf3251fc472f1a209376f2a9343c43eb"
+# votes = [0, 0, 3, 1, 1, 8, 0, 5, 0, 0]
+# return = ""
+
+# Bob Prover.toml
+token_budget = 100
+secret = "0x411e868757726edeac3ab1b952bf92f18ea6c2281315792c398d826e54cc442b"
+votes = [0, 5, 5, 0, 2, 6, 0, 3, 1, 0]
+return = ""

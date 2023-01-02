@@ -1,13 +1,19 @@
 use dep::std;
-global CANDIDATE_COUNT = 3;
+global CANDIDATE_COUNT = 10;
 global VOTER_COUNT = 2;
 
-fn main(commitments: [Field; VOTER_COUNT], secrets: [Field; VOTER_COUNT], all_votes: [u32; VOTER_COUNT * CANDIDATE_COUNT]) -> pub [u32; CANDIDATE_COUNT] {
+fn main(
+    commitments: [Field; VOTER_COUNT], // public commitments for each voter
+    secrets: [Field; VOTER_COUNT], // Each user's ballot secret
+    all_votes: [u32; VOTER_COUNT * CANDIDATE_COUNT] //Flattened array of user's votes. Votes are adjacent for each user
+) -> pub [u32; CANDIDATE_COUNT] {
     check_commitments(commitments, secrets, all_votes);
     let result = sum_votes(all_votes);
     result
 }
 
+// Iterates over the flattened array of votes and returns an array
+// with the sum of votes for each candidate
 fn sum_votes(all_votes: [u32; VOTER_COUNT * CANDIDATE_COUNT]) -> [u32; CANDIDATE_COUNT] {
     let mut result = [0; CANDIDATE_COUNT];
     for i in 0..VOTER_COUNT {
@@ -18,6 +24,7 @@ fn sum_votes(all_votes: [u32; VOTER_COUNT * CANDIDATE_COUNT]) -> [u32; CANDIDATE
     result
 }
 
+// Recalculate commitment for each user vote and compare it to the provided commitment
 fn check_commitments(
     commitments: [Field; VOTER_COUNT], 
     secrets: [Field; VOTER_COUNT], 

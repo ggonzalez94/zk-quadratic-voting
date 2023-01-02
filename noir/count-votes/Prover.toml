@@ -1,4 +1,19 @@
-all_votes = [1,1,1,2,2,2]
-secrets = [123,456]
-commitments = ["0x01cbeb38c3187313b569049cb70230393466931835f41bf8ba33d973df16da9e", "0x1b1ae9bd36506b469e88707bc7ed2d3ba59eaeff5dc8cf566b34ab3734f2467e"]
-return = [3,3,3]
+all_votes = [
+    # Alice
+    0, 0, 3, 1, 1, 8, 0, 5, 0, 0,
+    # Bob
+    0, 5, 5, 0, 2, 6, 0, 3, 1, 0,
+]
+secrets = [
+    # Alice
+    "0x05dbb4533ff6a367c2442e4aec0133b8cf3251fc472f1a209376f2a9343c43eb",
+    # Bob
+    "0x411e868757726edeac3ab1b952bf92f18ea6c2281315792c398d826e54cc442b",
+]
+commitments = [
+    # Alice
+    "0x126f924b705960b602ae77393842f219dc0f860d3c9a69f40f2797ff92c5010e", 
+    # Bob
+    "0x081342f76ea14dbeaee377c153caf2fdf31035fac43494e7d46a945b56dd8479"
+]
+return = [0, 5, 8, 1, 3, 14, 0, 8, 1, 0]
