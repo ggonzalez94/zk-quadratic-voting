@@ -1,0 +1,33 @@
+import "hashes/pedersen/512bit" as pedersen;
+const u32 CANDIDATE_COUNT = 10;
+const u32 VOTER_COUNT = 2;
+
+// Iterates over the 2D array of votes and returns an array
+// with the sum of votes for each candidate
+def sum_votes(u32[VOTER_COUNT][CANDIDATE_COUNT] all_votes) -> u32[CANDIDATE_COUNT] {
+    u32[CANDIDATE_COUNT] mut result = [0; CANDIDATE_COUNT];
+    for u32 i in 0..VOTER_COUNT {
+        for u32 j in 0..CANDIDATE_COUNT {
+            result[j] = result[j] + all_votes[i][j];
+        }
+    }
+    return result;
+}
+
+// In zokrates we have 2D arrays
+// Parameters can not span multiple lines - so cannot split them for readability
+// Also calling functions with no return value does not work from main. So returning true as a patch
+def check_commitments(u32[VOTER_COUNT] commitments, u32[VOTER_COUNT] secrets, u32[VOTER_COUNT][CANDIDATE_COUNT] all_votes) -> bool{
+    for u32 i in 0..VOTER_COUNT {
+        u32[16] input = [0,0,0,0,0,secrets[i],...all_votes[i]];
+        u32 commitment =  pedersen(input)[0];
+        assert(commitment == commitments[i]);
+    }
+    return true;
+    
+}
+
+def main(private u32[VOTER_COUNT] commitments, private u32[VOTER_COUNT] secrets, private u32[VOTER_COUNT][CANDIDATE_COUNT] all_votes) -> u32[CANDIDATE_COUNT] {
+    bool x = check_commitments(commitments, secrets, all_votes);
+    return sum_votes(all_votes);
+}

@@ -1,0 +1,30 @@
+import "hashes/pedersen/512bit" as pedersen;
+const u32 CANDIDATE_COUNT = 10;
+
+//The proof that we will generate ensures the user respected the token_budget
+//because we have an explicit constrain here
+// Calling functions with no return value does not work from main. So returning true as a patch
+def check_within_budget(u32 token_budget, u32[CANDIDATE_COUNT] votes) -> bool{
+    u32 mut sum = 0; 
+    for u32 i in 0..CANDIDATE_COUNT {
+        sum = sum + votes[i];
+    }
+    assert(sum <= token_budget);
+    return true;
+}
+
+def calculate_ballot_commitment(u32[CANDIDATE_COUNT] votes, u32 secret) -> u32 {
+    u32[16] input = [0,0,0,0,0,secret,...votes];
+    return pedersen(input)[0];
+}
+
+// Hashes the content of a ballot using pedersen and returns that value
+// A secret is used to avoid shield against brute forcing the commitment
+def main(u32 token_budget, private u32[CANDIDATE_COUNT] votes, private u32 secret) -> u32{
+    bool x = check_within_budget(token_budget, votes);
+    //Calculate commitment
+    u32 commitment = calculate_ballot_commitment(votes, secret);
+    log("Commitment is {}", commitment);
+    return commitment;
+}
+

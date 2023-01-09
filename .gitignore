@@ -1,2 +1,18 @@
+#Noir
 proofs/
 Verifier.toml
+
+# ZoKrates default files
+out
+out.ztf
+abi.json
+proof.json
+proving.key
+verification.key
+verifier.sol
+proof.json
+universal_setup.dat
+witness
+# snarkjs artifacts
+*.wtns
+*.r1cs

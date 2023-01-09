@@ -1,0 +1,5 @@
+#Alice votes
+zokrates compute-witness -a 100 0 0 3 1 1 8 0 5 0 0 1331357630
+
+#Bob votes
+zokrates compute-witness -a 100 0 5 5 0 2 6 0 3 1 0 2026462034
