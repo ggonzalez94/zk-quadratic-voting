@@ -27,6 +27,28 @@ The application is written in the following DSLs to show the differences and nua
 
 The repo is based on [ZK HACK III Workshop - Noir](https://www.youtube.com/watch?v=5CziMfChveY)
 
+### Comparison
+
+**Noir**  
+**+** Inputs are private by default.  
+**+** Noir uses PLONK by default, which doesn't require a trusted setup per application.  
+**+** Error messages from the compiler are very intuitive.  
+**+** Hash functions and type casting were easy to use.  
+**-** No support for 2D arrays(but that's on the way)  
+**-** No logging functionality. That makes debugging more challenging, you have to use asserts to see where your circuit is failing.
+
+**Zokrates**  
+**+** Python-like syntax is easier to grasp.
+**+** Better documentation(since it is more mature).
+**+** Support for 2D arrays and logging.  
+**-** Passing parameters via CLI becomes very cumbersome and support for JSON is very limited.  
+**-** Calling functions with no return values from main is not allowed, which hinders modularity.  
+**-** Cannot split function arguments in multiple lines.  
+**-** Errors from the compiler are somewhat cryptic.  
+**-** I found hash functions harder to use.
+
+**Conclusion:** Both Zokrates and Noir are high level languages(or as high level as we can ask for zk DSLs at this point), that allow regular developers without moon math knowledge to get started. Even though I initially liked the syntax of Zokrates more, I ended up having a much better experience with Noir. It was overall easier to use, error messages were much clearer and using nargo was very easy.
+
 ## Usage
 
 ### Noir
